@@ -20,8 +20,9 @@
   Secure sign-up and login for both students and sponsors.
 
 ---
-```
+
 ## 📁 Folder Structure
+```
 /student-sponsor-platform/
 │
 ├── /client/              # React frontend
