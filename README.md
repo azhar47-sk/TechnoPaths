@@ -20,7 +20,7 @@
   Secure sign-up and login for both students and sponsors.
 
 ---
-
+```
 ## 📁 Folder Structure
 /student-sponsor-platform/
 │
@@ -52,7 +52,7 @@
 ├── .env                      # Environment variables (Mongo URI, secret keys)
 ├── .gitignore
 └── README.md
-
+```
 ---
 
 ## 🛠 Tech Stack
