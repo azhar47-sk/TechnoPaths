@@ -1,0 +1,14 @@
+import express from 'express';
+const app = express();
+const port = 3000;
+
+// Middlewares
+app.use(express.json());
+
+app.get('/',(req,res)=>{
+    res.send('hello world!');
+})
+
+app.listen(port,()=>{
+    console.log(`listening on port ${port}`);
+})
