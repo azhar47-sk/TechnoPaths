@@ -11,6 +11,11 @@ mongoose.connect(process.env.MONGO_URI)
 .then(()=> {console.log('MongoDB Connected')})
 .catch(err=>console.log(err));
 
+// Import your models
+const Student = require("./models/Student");
+const Sponsor = require("./models/Sponsor");
+const Project = require("./models/Project");
+
 // Middlewares
 app.use(express.json());
 
