@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
+import cors from "cors";
+import projectRoutes from "./routes/projectRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -12,12 +14,21 @@ mongoose.connect(process.env.MONGO_URI)
 .catch(err=>console.log(err));
 
 // Import your models
-const Student = require("./models/Student");
-const Sponsor = require("./models/Sponsor");
-const Project = require("./models/Project");
+import Student from "./models/students.js";
+import Sponsor from "./models/sponsors.js";
+import Project from "./models/projects.js";
 
 // Middlewares
+app.use(
+  cors({
+    origin: "http://localhost:5173", // ✅ specify frontend URL, not "*"
+    credentials: true,              // ✅ allow cookies / credentials
+  })
+);
 app.use(express.json());
+
+// Routes
+app.use("/api/projects", projectRoutes);
 
 app.get('/',(req,res)=>{
     res.send('hello world!');
