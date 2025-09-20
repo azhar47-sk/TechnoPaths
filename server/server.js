@@ -2,16 +2,23 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
 import cors from "cors";
+
+// Routes
 import projectRoutes from "./routes/projectRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+
+// Configs
+import connectDB from "./config/db.js";
 dotenv.config();
+
+// Middlewares
+import {notFound,errorHandler} from "./middleware/errorMiddleware.js";
 
 const app = express();
 const Port = process.env.PORT || 3000
 
 // Database
-mongoose.connect(process.env.MONGO_URI)
-.then(()=> {console.log('MongoDB Connected')})
-.catch(err=>console.log(err));
+connectDB();
 
 // Import your models
 import Student from "./models/students.js";
@@ -29,6 +36,11 @@ app.use(express.json());
 
 // Routes
 app.use("/api/projects", projectRoutes);
+app.use("/api/auth", authRoutes);
+
+// Middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 app.get('/',(req,res)=>{
     res.send('hello world!');
